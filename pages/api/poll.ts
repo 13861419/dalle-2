@@ -14,17 +14,17 @@ export default async function handler(
   const { id }: any = req.query;
 
   try {
-    // Check if the user has exceeded maximum number of requests per minute
+    // 检查用户是否超过了每分钟的最大请求数
     await limiter.check(res, 60, "CACHE_TOKEN").catch((e) => {
-      // 60 requests per minute (polling every second)
+      // 每分钟 60 个请求（每秒轮询）
       return res.status(429).json({
         message:
-          "You have exceeded the maximum number of requests. Please try again in a minute.",
-        description: "The user has exceeded the maximum number of requests",
+          "您已超过最大请求数,请稍后重试。",
+        description: "用户已超过最大请求数",
       });
     });
     const data = await redis.get(id);
-    if (!data) return res.status(404).json({ message: "No data found" });
+    if (!data) return res.status(404).json({ message: "没有找到数据" });
     else return res.status(200).json(data);
   } catch (error) {
     return res.status(500).json({ message: error.message });

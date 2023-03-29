@@ -1,8 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 const QSTASH = `https://qstash.upstash.io/v1/publish/`;
 const DALL_E = "https://api.openai.com/v1/images/generations";
-const VERCEL_URL = "https://dalle-2.vercel.app";
+const VERCEL_URL = "https://image.songzhijjun.ltd.gd/";
 import rateLimit from "../../utils/rate-limit";
+const OPENAI_API_KEY = process?.env["OPENAI_API_KEY"];
+const QSTASH_TOKEN = process?.env["OPENAI_API_KEY"];
 
 const limiter = rateLimit({
   uniqueTokenPerInterval: 500, // 500 unique tokens per interval
@@ -27,8 +29,8 @@ export default async function handler(
     const response = await fetch(`${QSTASH + DALL_E}`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.QSTASH_TOKEN}`,
-        "upstash-forward-Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${QSTASH_TOKEN}`,
+        "upstash-forward-Authorization": `Bearer ${OPENAI_API_KEY}`,
         "Content-Type": "application/json",
         "Upstash-Callback": `${VERCEL_URL}/api/callback`,
       },

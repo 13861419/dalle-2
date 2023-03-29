@@ -21,11 +21,11 @@ export default function Document() {
         />
         <meta
           property="og:image"
-          content="https://dalle-2.vercel.app/ogimage.png"
+          content="http://image.songzhijjun.ltd.gd/ogimage.png"
         />
         <meta
           name="twitter:image"
-          content="https://dalle-2.vercel.app/ogimage.png"
+          content="http://image.songzhijjun.ltd.gd/ogimage.png"
         />
         <meta
           property="og:description"
@@ -35,7 +35,7 @@ export default function Document() {
           name="twitter:description"
           content="Generate an AI-generated image with a description."
         />
-        <meta property="og:site_name" content="dalle-2.vercel.app" />
+        <meta property="og:site_name" content="image.songzhijjun.ltd.gd" />
         <meta name="keywords" content="AI, text2image, dalle, dall-e, openai" />
         <meta property="og:title" content="Dall-E 2 AI Image Generator" />
         <meta name="twitter:card" content="summary_large_image" />
